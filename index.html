@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aghilas Ould Braham - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --accent-2: #00d4ff;
+            --text: #8892b0;
+            --text-light: #ccd6f6;
+            --text-highlight: #e6f1ff;
+        }
+
+        body {
+            font-family: 'DM Mono', monospace;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(100, 255, 218, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: -0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            color: var(--text-highlight);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            border: 2px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-highlight);
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::before {
+            content: attr(data-number);
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(100, 255, 218, 0.2);
+            max-width: 300px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            color: var(--text-light);
+            padding: 0.5rem;
+            border-left: 2px solid var(--accent);
+            padding-left: 1rem;
+            transition: all 0.3s;
+        }
+
+        .skill-item:hover {
+            background: rgba(100, 255, 218, 0.05);
+            padding-left: 1.5rem;
+        }
+
+        .skill-item::before {
+            content: '▹';
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        .profile-card {
+            background: var(--secondary);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        }
+
+        .profile-info {
+            margin-top: 1rem;
+        }
+
+        .profile-info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .profile-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .profile-label {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .profile-value {
+            color: var(--text-light);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent), transparent);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--primary), 0 0 0 6px var(--accent);
+        }
+
+        .timeline-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-highlight);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--accent);
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--secondary);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .project-icon {
+            font-size: 2rem;
+        }
+
+        .project-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-highlight);
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            min-height: 100px;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--text-light);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover .social-icon {
+            border-color: var(--accent);
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        footer p {
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .timeline {
+                padding-left: 1rem;
+            }
+
+            .timeline-item {
+                padding-left: 1rem;
+            }
+
+            .timeline-item::before {
+                left: -1.5rem;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">AOB</div>
+            <ul class="nav-links">
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#experience">Expérience</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="hero-subtitle">Bonjour, je suis</p>
+                    <h1>Aghilas Ould Braham</h1>
+                    <h2>Future Ingénieur Réseaux & Systèmes</h2>
+                    <p class="hero-description">
+                        Étudiant en M2 Informatique spécialisé en Réseaux et Systèmes Autonomes. 
+                        Passionné par les infrastructures cloud, la virtualisation et l'automatisation. 
+                        Je conçois des solutions réseau robustes et évolutives.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn btn-primary">Me contacter</a>
+                        <a href="#projects" class="btn btn-secondary">Voir mes projets</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="fade-in">
+            <div class="container">
+                <h2 class="section-title" data-number="01.">À propos</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Actuellement en Master 2 Réseaux et Systèmes Autonomes à l'Université Paris Cité, 
+                            je me spécialise dans l'architecture et l'administration d'infrastructures réseau complexes.
+                        </p>
+                        <p>
+                            Mon parcours m'a permis de développer une expertise approfondie en virtualisation, 
+                            conteneurisation et orchestration. J'ai notamment travaillé sur des projets impliquant 
+                            Kubernetes, Docker, et des solutions de cloud computing.
+                        </p>
+                        <p>
+                            Mes compétences techniques couvrent un large spectre, de la configuration réseau 
+                            Cisco à l'automatisation avec Ansible, en passant par l'administration de systèmes 
+                            Linux et Windows Server.
+                        </p>
+
+                        <div class="skills-grid">
+                            <div class="skill-item">Docker, Podman Kubernetes</div>
+                            <div class="skill-item">VMware, VirtualBOX, Proxmox & ESXi</div>
+                            <div class="skill-item">Linux & Windows Server</div>
+                            <div class="skill-item">Ansible & Automation</div>
+                            <div class="skill-item">Python, Bash & PowerShell</div>
+                            <div class="skill-item">Réseaux Cisco</div>
+                            <div class="skill-item">PostgreSQL & MySQL</div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card">
+                        <h3 style="color: var(--text-highlight); font-family: 'Syne', sans-serif; margin-bottom: 1rem;">Informations</h3>
+                        <div class="profile-info">
+                            <div class="profile-info-item">
+                                <span class="profile-label">Formation</span>
+                                <span class="profile-value">M2 RSA</span>
+                            </div>
+                            <div class="profile-info-item">
+                                <span class="profile-label">Université</span>
+                                <span class="profile-value">Paris Cité</span>
+                            </div>
+                            <div class="profile-info-item">
+                                <span class="profile-label">Localisation</span>
+                                <span class="profile-value">Île-de-France</span>
+                            </div>
+                            <div class="profile-info-item">
+                                <span class="profile-label">Disponibilité</span>
+                                <span class="profile-value">Stage</span>
+                            </div>
+                            <div class="profile-info-item">
+                                <span class="profile-label">Langues</span>
+                                <span class="profile-value">FR / EN / AR</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="fade-in">
+            <div class="container">
+                <h2 class="section-title" data-number="02.">Expérience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p class="timeline-date">2024 - 3 mois</p>
+                        <h3 class="timeline-title">Stage Infrastructure Réseau</h3>
+                        <p class="timeline-company">INSIM - Algérie</p>
+                        <p class="timeline-description">
+                            Conception et déploiement d'une infrastructure réseau hétérogène sous VMware. 
+                            Configuration de routeurs, switches et serveurs. Administration de systèmes Windows 
+                            Server et Linux avec optimisation des performances et de la continuité de service.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">VMware</span>
+                            <span class="tag">Windows Server</span>
+                            <span class="tag">Linux</span>
+                            <span class="tag">Réseau</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-date">2024 - 1 mois</p>
+                        <h3 class="timeline-title">Stage Cloud Infrastructure</h3>
+                        <p class="timeline-company">INSIM - Algérie</p>
+                        <p class="timeline-description">
+                            Mise en place d'une infrastructure cloud interne accessible via navigateur. 
+                            Automatisation des déploiements avec Ansible et création d'environnements 
+                            isolés via Docker pour une gestion centralisée des machines virtuelles.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Cloud</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Ansible</span>
+                            <span class="tag">Automation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="fade-in">
+            <div class="container">
+                <h2 class="section-title" data-number="03.">Projets</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            
+                        </div>
+                        <h3 class="project-title">Réseau 5G Core (Free5GC)</h3>
+                        <p class="project-description">
+                            Déploiement complet d'un cœur de réseau 5G avec Free5GC sur Kubernetes. 
+                            Orchestration des Network Functions (AMF, SMF, UPF, NRF, UDM) avec Helm Charts, 
+                            simulation UE/gNodeB avec UERANSIM, et tests de performances du réseau 5G SA.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Docker</span>
+                            <span class="tag">Kubernetes</span>
+                            <span class="tag">Helm</span>
+                            <span class="tag">KinD</span>
+                            
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            
+                        </div>
+                        <h3 class="project-title">Optimisation 5G avec Deep Learning</h3>
+                        <p class="project-description">
+                            Modèle DRL (Deep Reinforcement Learning) pour optimiser la latence dans les réseaux 5G. 
+                            Simulation NS-3 avec scénarios urbains, algorithme Q-Learning pour allocation de ressources, 
+                            et déploiement MEC pour traitement edge computing distribué.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Deep Learning</span>
+                            <span class="tag">NS-3</span>
+                            <span class="tag">Q-Learning</span>
+                            <span class="tag">Flask</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">K8s</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            
+                        </div>
+                        <h3 class="project-title">Plateforme Microservices Cloud-Native</h3>
+                        <p class="project-description">
+                            Architecture microservices avec service LLM (génération code Python via modèles 
+                            open-source), service OCR intelligent (extraction formules LaTeX depuis PDF avec 
+                            Gemini API), API Gateway, orchestration Kubernetes et monitoring Prometheus/Grafana.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">LLM</span>
+                            <span class="tag">OCR</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">K8s</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            
+                        </div>
+                        <h3 class="project-title">PKI & Autorité de Certification Enterprise</h3>
+                        <p class="project-description">
+                            Infrastructure PKI complète avec AD CS (Active Directory Certificate Services). 
+                            Déploiement autorité de certification racine, création modèles certificats SSL/TLS, 
+                            sécurisation services RDS avec certificats X.509, et automatisation PowerShell.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">AD CS</span>
+                            <span class="tag">PKI</span>
+                            <span class="tag">SSL/TLS</span>
+                            <span class="tag">PowerShell</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            
+                        </div>
+                        <h3 class="project-title">Authentification 802.1X Enterprise</h3>
+                        <p class="project-description">
+                            Solution d'authentification réseau 802.1X avec RADIUS (NPS) et Active Directory. 
+                            Déploiement certificats X.509 via PKI interne, configuration EAP-PEAP/MSCHAPv2, 
+                            attribution dynamique VLANs selon groupes AD, et sécurisation accès réseau filaire/WiFi.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">802.1X</span>
+                            <span class="tag">RADIUS/NPS</span>
+                            <span class="tag">EAP-PEAP</span>
+                            <span class="tag">Dynamic VLAN</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            
+                        </div>
+                        <h3 class="project-title">Parallélisation Automatique</h3>
+                        <p class="project-description">
+                            Développement d'une bibliothèque Python permettant la parallélisation automatique 
+                            de tâches avec gestion intelligente des dépendances. Optimisation des performances 
+                            pour le traitement de données volumineuses.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Python</span>
+                            
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            
+                        </div>
+                        <h3 class="project-title">VPN sous Linux (WireGuard)</h3>
+                        <p class="project-description">
+                            Déploiement d'un réseau privé virtuel avec WireGuard pour connecter deux 
+                            réseaux distants de manière sécurisée. Configuration de tunnel chiffré, 
+                            gestion des clés cryptographiques et analyse du trafic encapsulé.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">WireGuard</span>
+                            <span class="tag">VPN</span>
+                            <span class="tag">Sécurité</span>
+                            <span class="tag">Linux</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                        </div>
+                        <h3 class="project-title">NAT & Pare-feu nftables</h3>
+                        <p class="project-description">
+                            Mise en place de règles NAT (SNAT/DNAT) avec nftables pour permettre 
+                            l'accès Internet à un réseau privé et la publication de services web. 
+                            Configuration de redirection de ports et analyse de paquets avec Wireshark.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">nftables</span>
+                            <span class="tag">NAT</span>
+                            <span class="tag">Firewall</span>
+                            <span class="tag">Wireshark</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                        
+                        </div>
+                        <h3 class="project-title">Infrastructure Réseau & Routage</h3>
+                        <p class="project-description">
+                            Conception d'une infrastructure réseau multi-segments avec routage statique, 
+                            configuration DNS récursif avec BIND9, et déploiement de serveur web. 
+                            Segmentation réseau et optimisation du routage inter-VLAN.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Routing</span>
+                            <span class="tag">DNS</span>
+                            <span class="tag">BIND9</span>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="fade-in">
+            <div class="container">
+                <h2 class="section-title" data-number="05.">Contact</h2>
+                <div class="contact-content">
+                    <p>
+                        Je suis actuellement à la recherche d'un stage pour approfondir mes compétences 
+                        en réseaux et systèmes. N'hésitez pas à me contacter pour discuter 
+                        d'opportunités ou de projets intéressants !
+                    </p>
+                    <a href="mailto:aghilasouldbraham8@gmail.com" class="btn btn-primary">Envoyer un email</a>
+                    
+                    <div class="social-links">
+                        <a href="mailto:aghilasouldbraham8@gmail.com" class="social-link">
+                            <div class="social-icon">📧</div>
+                            <span style="font-size: 0.9rem;">Email</span>
+                        </a>
+                        <a href="http://www.linkedin.com/in/aghilas-ould-braham-3907b92a6" target="_blank" class="social-link">
+                            <div class="social-icon">💼</div>
+                            <span style="font-size: 0.9rem;">LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/Aghilas08" target="_blank" class="social-link">
+                            <div class="social-icon">💻</div>
+                            <span style="font-size: 0.9rem;">GitHub</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="fade-in">
+            <div class="container">
+                <h2 class="section-title" data-number="04.">Certifications</h2>
+                <div class="contact-content">
+                    <div style="text-align: left; max-width: 700px; margin: 0 auto;">
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="color: var(--text-highlight); font-family: 'Syne', sans-serif; font-size: 1.3rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="font-size: 1.5rem;"></span> Cisco Networking Academy
+                            </h3>
+                            <div class="timeline-tags" style="justify-content: flex-start;">
+                                <span class="tag">CCNA1</span>
+                                <span class="tag">CCNA2</span>
+                                <span class="tag">CCNA3</span>
+                                <span class="tag">CCNA4</span>
+                                <span class="tag">CCNA IT</span>
+                                <span class="tag">CCNA Security</span>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="color: var(--text-highlight); font-family: 'Syne', sans-serif; font-size: 1.3rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="font-size: 1.5rem;"></span> Google Cloud Platform
+                            </h3>
+                            <div class="timeline-tags" style="justify-content: flex-start;">
+                                
+                                <span class="tag">Google Cloud Essentials</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 style="color: var(--text-highlight); font-family: 'Syne', sans-serif; font-size: 1.3rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="font-size: 1.5rem;">💻</span> HackerRank
+                            </h3>
+                            <div class="timeline-tags" style="justify-content: flex-start;">
+                                <span class="tag">Python (Basic) Certificate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Aghilas Ould Braham. Conçu avec passion pour l'innovation.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const grid = document.querySelector('.bg-grid');
+            grid.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>
